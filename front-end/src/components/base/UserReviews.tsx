@@ -9,7 +9,7 @@ export default function UserReviews() {
       <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
         <Card className="p-6 text-center">
           <p className="text-lg text-gray-700">
-            “ChatNest is a game-changer! The fastest way to start a chat.”
+            “QuickChat is a game-changer! The fastest way to start a chat.”
           </p>
           <div className="mt-4">
             <img
@@ -22,7 +22,7 @@ export default function UserReviews() {
         </Card>
         <Card className="p-6 text-center">
           <p className="text-lg text-gray-700">
-            “The encryption is top-notch. I feel secure using ChatNest.”
+            “The encryption is top-notch. I feel secure using QuickChat.”
           </p>
           <div className="mt-4">
             <img
