@@ -31,7 +31,9 @@ const ProfileMenu = ({ name, image }: { name: string; image?: string }) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem>Profile</DropdownMenuItem>
 
-          <DropdownMenuItem onClick={()=>setLogOutopen(true)}>Log Out</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLogOutopen(true)}>
+            Log Out
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

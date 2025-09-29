@@ -22,7 +22,7 @@ const LogoutModal = ({
   const handleLogOut = () => {
     signOut({
       redirect: true,
-      callbackUrl:"/"
+      callbackUrl: "/",
     });
   };
 
