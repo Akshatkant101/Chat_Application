@@ -27,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionProvider>
-        <body suppressHydrationWarning
+        <body
+          suppressHydrationWarning
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Toaster richColors duration={10000} />

@@ -80,7 +80,7 @@ class chatGroupController {
       });
     }
   }
-   static async destroy(req: Request, res: Response) {
+  static async destroy(req: Request, res: Response) {
     try {
       const { id } = req.params;
       const groups = await prisma.chatGroup.delete({

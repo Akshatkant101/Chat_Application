@@ -42,7 +42,7 @@ export const authOption: AuthOptions = {
         };
         const { data } = await axios.post(LOGIN_URL, payload);
         user.id = data?.user?.id.toString();
-        user.token = data?.user?.token; 
+        user.token = data?.user?.token;
         user.provider = data?.user?.provider;
       } catch (error) {
         console.error("Sign in error:", error);
