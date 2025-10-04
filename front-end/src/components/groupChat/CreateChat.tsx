@@ -20,6 +20,7 @@ import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Chat_Group_URL } from "@/lib/apiEndPoints";
+import { clearCache } from "@/actions/common";
 
 const CreateChat = ({ user }: { user: CustomUser }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +47,7 @@ const CreateChat = ({ user }: { user: CustomUser }) => {
         },
       );
       if (data?.message) {
+        clearCache("dashboard")
         setLoading(false);
         setOpen(false);
         toast.success(data?.message);
