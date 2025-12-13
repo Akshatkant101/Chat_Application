@@ -1,18 +1,18 @@
-import type { Request, Response } from "express";
-import prisma from "../config/db.config.js";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-
+import prisma from "../config/db.config.js";
 interface LoginPayloadType {
   name: string;
   email: string;
-  provider: string;
   oauth_id: string;
-  image?: string;
+  provider: string;
+  image: string;
 }
+
 class AuthController {
-  static async login(request: Request, response: Response) {
+  static async login(req: Request, res: Response) {
     try {
-      const body: LoginPayloadType = request.body;
+      const body: LoginPayloadType = req.body;
       let findUser = await prisma.user.findUnique({
         where: {
           email: body.email,
@@ -29,10 +29,10 @@ class AuthController {
         email: body.email,
         id: findUser.id,
       };
-      const token = jwt.sign(JWTPayload, process.env.JWT_SECRET!, {
+      const token = jwt.sign(JWTPayload, process.env.JWT_SECRET, {
         expiresIn: "365d",
       });
-      return response.json({
+      return res.json({
         message: "Logged in successfully!",
         user: {
           ...findUser,
@@ -40,7 +40,9 @@ class AuthController {
         },
       });
     } catch (error) {
-      return response.status(500).json({ message: "Something went wrong!" });
+      return res
+        .status(500)
+        .json({ message: "Something went wrong.please try again!" });
     }
   }
 }

@@ -2,10 +2,13 @@ interface AuthUser {
   id: number;
   name: string;
   email: string;
+  google_id: string;
+  image?: string;
+  // Add other relevant user properties here
 }
-// overwriting express types to declare user too
+
 declare namespace Express {
   export interface Request {
-    user: ?AuthUser;
+    user?: AuthUser; // Optional user property
   }
 }

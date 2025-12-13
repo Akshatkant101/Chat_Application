@@ -1,27 +1,28 @@
-import DashNav from "@/components/dashboard/DashNav";
+import CreateChat from "@/components/chatGroup/CreateChat";
+import DashNav from "@/components/chatGroup/DashNav";
 import React from "react";
-import { authOption, CustomSession } from "../api/auth/[...nextauth]/options";
+import { authOptions, CustomSession } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
-import CreateChat from "@/components/groupChat/CreateChat";
-import { fetchChatGroups } from "@/fetch/groupfetch";
-import GroupChatCard from "@/components/groupChat/GroupChatCard";
+import { fetchChatGroups } from "@/fetch/groupFetch";
+import GroupChatCard from "@/components/chatGroup/GroupChatCard";
 
-const page = async ({ name, image }: { name: string; image?: string }) => {
-  const session: CustomSession | null = await getServerSession(authOption);
-  const groups: Array<ChatGroupType> | [] = await fetchChatGroups(
-    session?.user?.token!,
+export default async function dashboard() {
+  const session: CustomSession | null = await getServerSession(authOptions);
+  const groups: Array<GroupChatType> | [] = await fetchChatGroups(
+    session?.user?.token!
   );
-  console.log("The groups are", groups);
   return (
     <div>
       <DashNav
         name={session?.user?.name!}
         image={session?.user?.image ?? undefined}
       />
-      <div className="max-w-7xl mx-auto">
-        <div className="flex mt-10 justify-end">
+      <div className="container">
+        <div className="mt-6 text-end">
           <CreateChat user={session?.user!} />
         </div>
+
+        {/* If Groups */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {groups.length > 0 &&
             groups.map((item, index) => (
@@ -31,6 +32,4 @@ const page = async ({ name, image }: { name: string; image?: string }) => {
       </div>
     </div>
   );
-};
-
-export default page;
+}

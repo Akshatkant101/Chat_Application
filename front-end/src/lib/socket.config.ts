@@ -1,11 +1,9 @@
 import { io, Socket } from "socket.io-client";
-import env from "./env";
-
+import Env from "./env";
 let socket: Socket;
-
-export const getSocket = (): Socket => {
+export const getSocket = () => {
   if (!socket) {
-    socket = io(env.BACKEND_URL, { autoConnect: false });
+    socket = io(Env.BACKEND_URL, { autoConnect: false });
   }
   return socket;
 };
